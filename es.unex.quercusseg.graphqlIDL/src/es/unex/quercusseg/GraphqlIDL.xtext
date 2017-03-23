@@ -1,0 +1,189 @@
+//created from schema language description at: http://graphql.org/learn/schema/
+grammar es.unex.quercusseg.GraphqlIDL with org.eclipse.xtext.common.Terminals
+hidden(WS, ML_COMMENT, SL_COMMENT, COMMA, COMMENT)
+
+generate graphqlIDL "http://www.unex.es/quercusseg/GraphqlIDL"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+GraphqlSchema:
+	schema=GraphqlSchemaDefinition & types+=GraphqlTypeDefinition*
+;
+
+GraphqlSchemaDefinition: 
+ name='schema' '{'
+ 			 rootQuery=GraphqlRootQuery 
+ 			 ('mutation' ':' mutation=[GraphqlObjectTypeDefinition | NAME])? 
+ 			 ('subscription' ':' subcription=[GraphqlObjectTypeDefinition | NAME])? 
+ 		  '}' 
+;
+
+GraphqlRootQuery:
+	name='query' ':'query=[GraphqlObjectTypeDefinition | NAME] //terminal section mandatory because not using ID as terminal 
+;
+
+GraphqlTypeDefinition:
+	GraphqlObjectTypeDefinition |
+	GraphqlScalarTypeDefinition |
+	GraphqlInterfaceTypeDefinition |
+	GraphqlUnionTypeDefinition |
+	GraphqlEmunTypeDefinition |
+	GraphqlInputTypeDefinition
+;
+
+GraphqlObjectTypeDefinition:
+	'type' name=NAME ('implements' interfaces+=[GraphqlInterfaceTypeDefinition | NAME]+)? '{' fields+=GraphqlField+ '}'
+;
+
+GraphqlInterfaceTypeDefinition:
+	'interface' name=NAME '{' fields+=GraphqlField+ '}'
+;
+
+GraphqlScalarTypeDefinition: 
+	'scalar' name=NAME
+;
+
+GraphqlEmunTypeDefinition:
+	'enum' name=NAME '{' values+=EnumValue+ '}'
+;
+
+GraphqlUnionTypeDefinition: 
+	'union' name=NAME '=' members+=[GraphqlObjectTypeDefinition | NAME] ('|' members+=[GraphqlObjectTypeDefinition | NAME])*
+;
+
+GraphqlInputTypeDefinition:
+	'input' name=NAME '{' fields+=GraphqlInputField+ '}'
+;
+
+GraphqlInputField:
+	name=NAME ':' type=GraphqlInputType
+;
+
+GraphqlField:
+	name=NAME ('(' args+=Argument ')')* ':' type=GraphqlType
+;
+
+GraphqlType:
+	dtype=[GraphqlTypeDefinition | NAME] (nonNull?='!')? |
+	ntype=GraphqlNamedType (nonNull?='!')? |
+	ltype=GraphqlListType (nonNull?='!')?
+;
+
+GraphqlNamedType:
+	name=SCALAR
+;
+
+GraphqlListType:
+	'[' GraphqlType ']'
+;
+
+//The fields on an input object type can themselves refer to input object types, but you can't mix input and output types in your schema
+GraphqlInputType:
+	dtype=[GraphqlInputTypeDefinition | NAME] (nonNull?='!')? |
+	ntype=GraphqlNamedType (nonNull?='!')? |
+	ltype=GraphqlListInputType (nonNull?='!')?
+;
+
+GraphqlListInputType:
+	'[' GraphqlInputType ']'
+;
+
+Argument:
+	name=NAME ':' type=GraphqlType ('=' defValue=GraphqlValue)?
+;
+
+//DefaultValue:
+//	Value 
+//;
+
+GraphqlValue: 
+	 sv=SingleValue | ev=[EnumValue | NAME] | cv=ComplexValue //condition added to solve different returned types for value attr
+;
+
+SingleValue:
+	value=IntValue |
+	value=FloatValue |
+	value=StringValue |
+	value=BOOLEANVALUE |
+	value=NULLVALUE
+;
+
+ComplexValue:
+	value=ListValue |
+	value=ObjectValue
+;
+	
+EnumValue: {EnumValue}
+	name=ENUM_VALUE
+;
+
+ListValue:
+	{ListValue} '[' values+=GraphqlValue* ']'
+;
+	
+ObjectValue: 
+	{ObjectValue} '{' fields+=ObjectField* '}'
+;
+
+ObjectField: 
+	name=NAME ':' value=GraphqlValue
+;
+
+//Terminals and data types
+terminal COMMA: ',' ;
+
+terminal COMMENT: 
+    '#' !('\n'|'\r')* ('\r'? '\n')?;
+    
+terminal BOOLEANVALUE: 'true' | 'false' ;
+
+terminal NULLVALUE: 'null';
+
+terminal NONZERODIGIT: ('1'..'9');
+
+terminal SCALAR: 'Int' | 'Float' | 'String' | 'Boolean' | 'ID';
+
+terminal ENUM_VALUE: 
+    ('A'..'Z'|'_') ('A'..'Z'|'_'|'0'..'9')*; 
+
+terminal NAME: 
+    ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*; 
+    
+
+IntValue:
+	IntegerPart
+;
+
+IntegerPart: //returns ecore::EInt: 
+	(NegativeSign)? '0' |
+	(NegativeSign)? NONZERODIGIT INT 
+;
+
+NegativeSign: '-' ;
+
+FloatValue:
+	IntegerPart FractionalPart |
+	IntegerPart ExponentPart |
+	IntegerPart FractionalPart ExponentPart
+;
+
+FractionalPart:
+	'.' INT
+;
+
+ExponentPart:
+	ExponentIndicator Sign? INT
+;
+
+ExponentIndicator: //TODO: could be enum rule but then ExponentPart should assign the returned value
+	'e' | 'E'
+;
+
+Sign: //TODO: could be enum rule but then ExponentPart should assign the returned value
+	'+' | '-'
+;
+
+StringValue:
+	'"' '"' |
+	'"' STRING '"'
+;
