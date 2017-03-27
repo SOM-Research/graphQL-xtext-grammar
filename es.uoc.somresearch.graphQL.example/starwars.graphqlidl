@@ -1,0 +1,64 @@
+schema {
+	query : rootQuery
+}
+
+type rootQuery {
+  hero(episode: Episode): Character
+  droid(id: ID!): Droid
+}
+
+/**
+ * This is an example of mutation. I did not find a way to define it beyond
+ * using a new "type" element, but then arguments are not allowed"
+ * 
+type CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+  createReview(episode: $ep, review: $review) {
+    stars
+    commentary
+  }
+}
+*/
+
+interface Character {
+  id: ID!
+  name: String!
+  height: Float
+  friends: [Character]
+  appearsIn: [Episode]!
+}
+
+enum Episode {
+  NEWHOPE
+  EMPIRE
+  JEDI
+}
+
+type Human implements Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+  starships: [Starship]
+  totalCredits: Int
+}
+
+type Starship {
+  id: ID!
+  name: String!
+  length: Float
+}
+
+type Droid implements Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+  primaryFunction: String
+}
+
+type Review {
+  id: ID!
+  commentary: String!
+  episode: [Episode]!
+}
+
