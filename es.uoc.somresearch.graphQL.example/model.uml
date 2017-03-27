@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_5vAaoBLCEeeJV-jt9w9xVA" name="starwars">
+  <packagedElement xmi:type="uml:Class" xmi:id="__Y0i0BLCEeeJV-jt9w9xVA" name="Character" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7skeEBLDEeeJV-jt9w9xVA" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_CcZBgBLDEeeJV-jt9w9xVA" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ZTR5sBLDEeeJV-jt9w9xVA" name="friends" type="__Y0i0BLCEeeJV-jt9w9xVA" association="_ZTMaIBLDEeeJV-jt9w9xVA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cGrOYBLDEeeJV-jt9w9xVA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cG0_YBLDEeeJV-jt9w9xVA" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_fXp28BLDEeeJV-jt9w9xVA" name="height">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_L-DvkRLEEeeJV-jt9w9xVA" name="appearsIn" type="_HeQjcBLEEeeJV-jt9w9xVA" association="_L-DIgBLEEeeJV-jt9w9xVA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sKgXABLGEeeJV-jt9w9xVA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sK700BLGEeeJV-jt9w9xVA" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ZTMaIBLDEeeJV-jt9w9xVA" memberEnd="_ZTR5sBLDEeeJV-jt9w9xVA _ZTVkEBLDEeeJV-jt9w9xVA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZTPdcBLDEeeJV-jt9w9xVA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZTQEgBLDEeeJV-jt9w9xVA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ZTVkEBLDEeeJV-jt9w9xVA" name="friend" type="__Y0i0BLCEeeJV-jt9w9xVA" association="_ZTMaIBLDEeeJV-jt9w9xVA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rXyA8BLDEeeJV-jt9w9xVA" name="Human">
+    <generalization xmi:type="uml:Generalization" xmi:id="_8lR80BLFEeeJV-jt9w9xVA" general="__Y0i0BLCEeeJV-jt9w9xVA" generalizationSet="_8szEoBLGEeeJV-jt9w9xVA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_-gdQEhLFEeeJV-jt9w9xVA" name="starships" type="_B5kWYBLFEeeJV-jt9w9xVA" association="_-gcpABLFEeeJV-jt9w9xVA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__KkkEBLFEeeJV-jt9w9xVA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__KnnYBLFEeeJV-jt9w9xVA" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Aq-m4BLGEeeJV-jt9w9xVA" name="totalCredits">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FRoo8BLGEeeJV-jt9w9xVA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FRsTUBLGEeeJV-jt9w9xVA" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sGF4cBLDEeeJV-jt9w9xVA" name="Droid">
+    <generalization xmi:type="uml:Generalization" xmi:id="_83u-wBLFEeeJV-jt9w9xVA" general="__Y0i0BLCEeeJV-jt9w9xVA" generalizationSet="_8szEoBLGEeeJV-jt9w9xVA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__JbKABLEEeeJV-jt9w9xVA" name="primaryFunction">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Eio08BLGEeeJV-jt9w9xVA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EittcBLGEeeJV-jt9w9xVA" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_HeQjcBLEEeeJV-jt9w9xVA" name="Episode">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_KGB28BLEEeeJV-jt9w9xVA" name="NEWHOPE"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_IgyXcBLEEeeJV-jt9w9xVA" name="EMPIRE"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_JWVfYBLEEeeJV-jt9w9xVA" name="JEDI"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_L-DIgBLEEeeJV-jt9w9xVA" memberEnd="_L-DvkRLEEeeJV-jt9w9xVA _L-EWoBLEEeeJV-jt9w9xVA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L-DIgRLEEeeJV-jt9w9xVA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L-DvkBLEEeeJV-jt9w9xVA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_L-EWoBLEEeeJV-jt9w9xVA" name="hero" type="__Y0i0BLCEeeJV-jt9w9xVA" association="_L-DIgBLEEeeJV-jt9w9xVA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0w5P8BLEEeeJV-jt9w9xVA" name="Review">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2FgScBLEEeeJV-jt9w9xVA" name="stars">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4W_z8BLEEeeJV-jt9w9xVA" name="commentary">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VTQ5gRLGEeeJV-jt9w9xVA" name="episode" type="_HeQjcBLEEeeJV-jt9w9xVA" association="_VTPrYBLGEeeJV-jt9w9xVA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5kWYBLFEeeJV-jt9w9xVA" name="Starship">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_GpmW4BLFEeeJV-jt9w9xVA" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ROjjYBLFEeeJV-jt9w9xVA" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_T6IY0BLFEeeJV-jt9w9xVA" name="length">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_-gcpABLFEeeJV-jt9w9xVA" memberEnd="_-gdQEhLFEeeJV-jt9w9xVA _-gdQExLFEeeJV-jt9w9xVA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-gdQEBLFEeeJV-jt9w9xVA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-gdQERLFEeeJV-jt9w9xVA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_-gdQExLFEeeJV-jt9w9xVA" name="pilot" type="_rXyA8BLDEeeJV-jt9w9xVA" association="_-gcpABLFEeeJV-jt9w9xVA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_VTPrYBLGEeeJV-jt9w9xVA" memberEnd="_VTQ5gRLGEeeJV-jt9w9xVA _VTUj4BLGEeeJV-jt9w9xVA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VTQScBLGEeeJV-jt9w9xVA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VTQ5gBLGEeeJV-jt9w9xVA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_VTUj4BLGEeeJV-jt9w9xVA" name="review" type="_0w5P8BLEEeeJV-jt9w9xVA" association="_VTPrYBLGEeeJV-jt9w9xVA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4Le1kBLGEeeJV-jt9w9xVA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4MC2QBLGEeeJV-jt9w9xVA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:GeneralizationSet" xmi:id="_8szEoBLGEeeJV-jt9w9xVA" name="GeneralizationSet_Human_Droid" isCovering="true" isDisjoint="true" generalization="_8lR80BLFEeeJV-jt9w9xVA _83u-wBLFEeeJV-jt9w9xVA"/>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_D4EDYBLFEeeJV-jt9w9xVA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_D4F4kBLFEeeJV-jt9w9xVA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>
