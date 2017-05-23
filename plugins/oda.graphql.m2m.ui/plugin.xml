@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="GraphQL Transformations"
+            id="oda.graphql.m2m.ui.commands.transformations">
+      </category>
+      <command
+            name="Transformation IDL Command"
+            categoryId="oda.graphql.m2m.ui.commands.category"
+            id="oda.graphql.m2m.ui.commands.transformationIDLCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="oda.graphql.m2m.ui.commands.transformationIDLCommand"
+            class="oda.graphql.m2m.ui.handlers.TransformationIDLHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               id="oda.graphql.m2m.ui"
+               label="GrapqQL">
+            <command
+                  commandId="oda.graphql.m2m.ui.commands.transformationIDLCommand"
+                  id="oda.graphql.m2m.ui.transform"
+                  label="Transform to GraphQL IDL"
+                  style="push">
+            </command>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <count
+                        value="1">
+                  </count>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>

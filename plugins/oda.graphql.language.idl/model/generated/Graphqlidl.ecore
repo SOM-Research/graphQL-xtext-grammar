@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graphqlidl" nsURI="http://www.graphql.oda/language/Graphqlidl"
+    nsPrefix="graphqlidl">
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlSchema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#//GraphqlSchemaDefinition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="#//GraphqlTypeDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlSchemaDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootQuery" eType="#//GraphqlRootQuery"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mutation" eType="#//GraphqlObjectTypeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subcription" eType="#//GraphqlObjectTypeDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlRootQuery">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="query" eType="#//GraphqlObjectTypeDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlObjectTypeDefinition" eSuperTypes="#//GraphqlTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" unique="false"
+        upperBound="-1" eType="#//GraphqlInterfaceTypeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//GraphqlField" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlInterfaceTypeDefinition" eSuperTypes="#//GraphqlTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//GraphqlField" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlScalarTypeDefinition" eSuperTypes="#//GraphqlTypeDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlEmunTypeDefinition" eSuperTypes="#//GraphqlTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//EnumValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlUnionTypeDefinition" eSuperTypes="#//GraphqlTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" unique="false"
+        upperBound="-1" eType="#//GraphqlObjectTypeDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlInputTypeDefinition" eSuperTypes="#//GraphqlTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//GraphqlInputField" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlInputField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//GraphqlInputType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Argument"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//GraphqlType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlType" eSuperTypes="#//GraphqlListType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dtype" eType="#//GraphqlTypeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nonNull" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ntype" eType="#//GraphqlNamedType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ltype" eType="#//GraphqlListType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlNamedType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlListType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlInputType" eSuperTypes="#//GraphqlListInputType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dtype" eType="#//GraphqlInputTypeDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nonNull" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ntype" eType="#//GraphqlNamedType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ltype" eType="#//GraphqlListInputType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlListInputType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Argument">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//GraphqlType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defValue" eType="#//GraphqlValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphqlValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sv" eType="#//SingleValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ev" eType="#//EnumValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cv" eType="#//ComplexValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//GraphqlValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//ObjectField" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//GraphqlValue"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

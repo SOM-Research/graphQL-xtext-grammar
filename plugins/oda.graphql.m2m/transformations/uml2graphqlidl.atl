@@ -1,0 +1,15 @@
+-- @atlcompiler emftvm
+-- @nsURI MM=http://www.eclipse.org/uml2/5.0.0/UML
+-- @nsURI MM1=http://www.graphql.oda/language/Graphqlidl
+
+module uml2graphqlidl;
+create OUT : MM1 from IN : MM;
+
+rule class2type {
+	from 
+		sourceClass : MM!Class
+	to
+		targetType : MM1!GraphqlObjectTypeDefinition (
+			name <- sourceClass.name
+		)	
+}
