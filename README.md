@@ -25,7 +25,7 @@ Requirements
 
 Who is behind this project?
 ---------------------------
-* [Roberto Rodríguez-Echevarría](https://github.com/rrecheve)
+* [Roberto Rodriguez-Echeverria](https://github.com/rrecheve "Roberto Rodriguez-Echeverria")
 * [Javier Canovas](http://github.com/jlcanovas/ "Javier Canovas")
 * [Jordi Cabot](http://github.com/jcabot/ "Jordi Cabot")
 
