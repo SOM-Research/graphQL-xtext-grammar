@@ -5,6 +5,7 @@
 module uml2graphqlidl;
 create OUT : MM1 from IN : MM;
 
+-- Put the rules here :)
 rule class2type {
 	from 
 		sourceClass : MM!Class

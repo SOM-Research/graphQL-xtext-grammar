@@ -19,10 +19,19 @@ import org.osgi.framework.BundleContext;
 
 import oda.graphql.language.graphqlidl.GraphqlidlPackage;
 
+/**
+ * Main plugin class to execute the GraphQL transformations
+ *
+ */
 public class Graphqlm2mPlugin extends Plugin {
-	// The plug-in ID
+	/**
+	 * The plugin ID
+	 */
 	public static final String PLUGIN_ID = "oda.graphql.m2m"; //$NON-NLS-1$
 	
+	/**
+	 * Singleton
+	 */
 	private static Graphqlm2mPlugin plugin;
 
 	/*
@@ -52,6 +61,13 @@ public class Graphqlm2mPlugin extends Plugin {
 		return plugin;
 	}
 
+	/**
+	 * Executes a model-to-model transformation to obtain a graphql idl instance out of a 
+	 * UML model 
+	 * 
+	 * @param inputModel The UML model
+	 * @param outputModel The GraphQL IDL model
+	 */
 	public void transform(URI inputModel, URI outputModel) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		ExecEnv env = EmftvmFactory.eINSTANCE.createExecEnv();
